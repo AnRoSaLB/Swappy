@@ -1,0 +1,65 @@
+[gd_scene format=4 uid="uid://gt4rrmcjly2f"]
+
+[ext_resource type="Script" uid="uid://b4bo1gx4587f5" path="res://character_body_2d.gd" id="1_wtcfe"]
+[ext_resource type="Texture2D" uid="uid://70adwa7na5x7" path="res://swappy.png" id="2_epypp"]
+[ext_resource type="Texture2D" uid="uid://kud7tfhkd6wi" path="res://grass.png" id="3_0hol4"]
+[ext_resource type="Texture2D" uid="uid://t7vqs7s0spye" path="res://caillou.png" id="4_q6r6c"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bp5kt"]
+radius = 5.0
+height = 18.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kdubu"]
+texture = ExtResource("3_0hol4")
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_3sy6q"]
+physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_kdubu")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d21ai"]
+texture = ExtResource("4_q6r6c")
+1:1/0 = 0
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_w11f4"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_d21ai")
+
+[node name="Node2D" type="Node2D" unique_id=1629011125]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=130029217]
+texture_filter = 1
+script = ExtResource("1_wtcfe")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1037750482]
+zoom = Vector2(4.14, 4.14)
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=1745604498]
+texture_filter = 1
+position = Vector2(0, -7)
+texture = ExtResource("2_epypp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1669496860]
+position = Vector2(0, -9)
+shape = SubResource("CapsuleShape2D_bp5kt")
+
+[node name="Grass" type="TileMapLayer" parent="." unique_id=895121407]
+modulate = Color(0.9882353, 0.9882353, 0.9882353, 1)
+texture_filter = 1
+tile_map_data = PackedByteArray("AAD//wAAAQAAAAEAAAAAAAAAAQAAAAEAAAABAAAAAQAAAAEAAAACAAAAAQAAAAEAAAD+/wAAAQAAAAEAAAD9/wAAAQAAAAEAAAD+/wEAAQABAAAAAAD//wEAAQABAAAAAAAAAAEAAQABAAAAAAD+/wIAAQABAAAAAAAAAAIAAQABAAAAAAD//wIAAQABAAAAAAD//wMAAQABAAAAAAAAAAMAAQABAAAAAAABAAMAAQABAAAAAAABAAIAAQABAAAAAAABAAQAAQABAAAAAAACAAMAAQABAAAAAAAEAAIAAQABAAAAAAADAAIAAQABAAAAAAACAAIAAQABAAAAAAABAAEAAQABAAAAAAACAAEAAQABAAAAAAADAAEAAQABAAAAAAADAAAAAQAAAAEAAAAEAAAAAQAAAAEAAAAFAAAAAQAAAAEAAAAFAAEAAQABAAAAAAAEAAEAAQABAAAAAAAFAAIAAQABAAAAAAAGAAAAAQAAAAEAAAA=")
+tile_set = SubResource("TileSet_3sy6q")
+
+[node name="Caillou" type="TileMapLayer" parent="." unique_id=101285255]
+modulate = Color(1, 1, 1, 0.19607843)
+texture_filter = 1
+tile_map_data = PackedByteArray("AAALAAAAAAACAAMAAAAMAAAAAAACAAMAAAANAAAAAAACAAMAAAAOAAAAAAACAAMAAAAPAAAAAAACAAMAAAAQAAAAAAACAAMAAAARAAAAAAACAAMAAAASAAAAAAACAAMAAAATAAAAAAACAAMAAAAMAAEAAAADAAMAAAANAAEAAAADAAMAAAAOAAEAAAADAAMAAAAPAAEAAAADAAMAAAAQAAEAAAADAAMAAAARAAEAAAADAAMAAAASAAEAAAADAAMAAAAMAAIAAAADAAMAAAANAAIAAAADAAMAAAAOAAIAAAADAAMAAAAPAAIAAAADAAMAAAARAAIAAAADAAMAAAANAAMAAAADAAMAAAAOAAMAAAADAAMAAAAPAAMAAAADAAMAAAAQAAIAAAADAAMAAAAQAAMAAAADAAMAAAARAAMAAAADAAMAAAAOAAQAAAADAAMAAAAPAAQAAAADAAMAAAASAAMAAAADAAMAAAASAAIAAAADAAMAAAA=")
+tile_set = SubResource("TileSet_w11f4")
+collision_enabled = false
